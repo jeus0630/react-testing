@@ -3,6 +3,6 @@ import Greet from './greet';
 
 it("Greet renders correctly", () => {
     render(<Greet></Greet>);
-    const textElement = screen.getByText(/Hello/);
+    const textElement = screen.getByText(/hello/i);
     expect(textElement).toBeInTheDocument();
 })
