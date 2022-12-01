@@ -1,5 +1,9 @@
-export default function Greet() {
+interface GreetProps {
+    name?: string;
+}
+
+export default function Greet({name}: GreetProps) {
     return (
-        <div>Hello</div>
+        <div>Hello {name}</div>
     )        
 }
