@@ -39,6 +39,9 @@ describe("Application", () => {
 
         const closeElement = screen.getByTitle('close');
         expect(closeElement).toBeInTheDocument();
+        
+        const divElement = screen.getByTestId("testId");
+        expect(divElement).toBeInTheDocument();
 
         const bioElement = screen.getByRole("textbox", {
             name: "Bio"

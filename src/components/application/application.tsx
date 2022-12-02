@@ -8,7 +8,7 @@ export const Application = () => {
         <img src="https://via.placeholder.com/150" alt="a person with a laptop" />
         <div data-testid="custom-element">Custom HTML element</div>
         <form>
-          <div>
+          <div data-testid="testId">
             <label htmlFor="name">Name</label>
             <input
               type="text"
