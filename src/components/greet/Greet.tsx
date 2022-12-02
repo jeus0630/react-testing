@@ -1,6 +1,4 @@
-interface GreetProps {
-    name?: string;
-}
+import { GreetProps } from "./Greet.type"
 
 export default function Greet({name}: GreetProps) {
     return (

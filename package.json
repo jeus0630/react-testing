@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test:cov": "jest --coverage",
+    "test:cov": "jest --coverage --watchAll",
     "test:watch": "jest --watch"
   },
   "dependencies": {
