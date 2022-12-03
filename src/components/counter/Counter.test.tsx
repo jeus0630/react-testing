@@ -1,4 +1,4 @@
-import {screen, render} from '@testing-library/react';
+import {screen, render, logRoles} from '@testing-library/react';
 import user from "@testing-library/user-event";
 import { Counter } from './Counter';
 
@@ -49,6 +49,43 @@ describe("Counter", () => {
         await user.click(countButton);
         await user.click(countButton);
         
-        expect(heading).toHaveTextContent(2);
+        expect(heading).toHaveTextContent("2");
     })
+
+    it("Should render a count of 10 after clicking set button",async () => {
+        user.setup();
+        const {container} = render(<Counter></Counter>);
+        logRoles(container);
+        const amountInput = screen.getByRole("spinbutton");
+        await user.type(amountInput, '10');
+        expect(amountInput).toHaveValue(10);
+        const setButton = screen.getByRole("button",{
+            name: "Set"
+        });
+        await user.click(setButton);
+        const heading = screen.getByRole("heading",{
+            level: 1
+        });
+        expect(heading).toHaveTextContent("10");
+    })
+
+    it("Should foucs elements in the right order", async () => {
+        user.setup();
+        render(<Counter/>);
+        const amountInput = screen.getByRole("spinbutton");
+        const setButton = screen.getByRole("button", {
+            name: "Set"
+        });
+        const incrementButton = screen.getByRole("button",{
+            name: "Increment"
+        });
+
+        await user.tab();
+        expect(incrementButton).toHaveFocus();
+        await user.tab();
+        expect(amountInput).toHaveFocus();
+        await user.tab();
+        expect(setButton).toHaveFocus();
+    })
+    
 })
