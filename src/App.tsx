@@ -1,6 +1,6 @@
 import "./App.css";
 import { AppProviders } from "./providers/app-providers";
-import {MuiMode} from "../src/components/mui/MuiMode";
+import { MuiMode } from "../src/components/mui/MuiMode";
 
 function App() {
   return (
