@@ -1,5 +1,7 @@
 import { render, screen } from "../../test-utils";
 import { Users } from "./Users";
+import { server } from "../../mocks/server";
+import { rest } from "msw";
 
 describe("Users", () => {
     it("Should render correctly", () => {
@@ -16,5 +18,20 @@ describe("Users", () => {
         render(<Users></Users>);
         const users = await screen.findAllByRole("listitem");
         expect(users).toHaveLength(3);
+    })
+
+    it("Should render error", async () => {
+        server.use(
+            rest.get(
+                'https://jsonplaceholder.typicode.com/users',
+                (req, res, ctx) => {
+                    return res(ctx.status(500));
+                }
+            )
+        )
+
+        render(<Users></Users>);
+        const errorText = await screen.findByText("Error fetching users");
+        expect(errorText).toBeInTheDocument();
     })
 })
